@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Bluetooth_Test</string>
+    <string name="bluetooth">Player Tracking</string>
+    <string name="rx">Steps:</string>
+    <string name="read_buffer"><![CDATA[<Read Buffer>]]></string>
+    <string name="status">Status:</string>
+    <string name="bluetooth_status"><![CDATA[<Bluetooth Status>]]></string>
+    <string name="bluetooth_on">Bluetooth ON</string>
+    <string name="bluetooth_off">Bluetooth OFF</string>
+    <string name="show_paired_devices">Show paired Devices</string>
+    <string name="discover_new_devices">Discover New Devices</string>
+    <string name="todo">TODO</string>
+    <string name="match_tracking">Match Tracking</string>
+    <string name="data_reports">Data Reports</string>
+    <string name="upcoming_fixtures">Upcoming Fixtures</string>
+    <string name="league_standings">League Standings</string>
+    <string name="player_tracking">Player Tracking</string>
+</resources>
+
