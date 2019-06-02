@@ -49,10 +49,10 @@ public class Secondactivity extends AppCompatActivity {
     private final static int REQUEST_ENABLE_BT = 1; // used to identify adding bluetooth names
     private final static int MESSAGE_READ = 2; // used in bluetooth handler to identify message update
     private final static int CONNECTING_STATUS = 3; // used in bluetooth handler to identify message status
-    private int goalsS, goalsF, goalsC, goalsPC;// variables for goals
-    private int pointsS, pointsF, pointsC, pointsPC;// variables for points
-    private int handpassS, handpassF, handpassC, handpassPC;// variables for handpasses
-    private int kickpassS, kickpassF, kickpassC, kickpassPC;// variables for kickpasses
+    private float goalsS, goalsF, goalsC, goalsPC;// variables for goals
+    private float pointsS, pointsF, pointsC, pointsPC;// variables for points
+    private float handpassS, handpassF, handpassC, handpassPC;// variables for handpasses
+    private float kickpassS, kickpassF, kickpassC, kickpassPC;// variables for kickpasses
     private DecimalFormat df2 = new DecimalFormat("00%");// Deciaml format
 
     @SuppressLint({"HandlerLeak", "SetTextI18n"})
@@ -66,14 +66,13 @@ public class Secondactivity extends AppCompatActivity {
         mScore_editTxt = findViewById(R.id.goals_editText3);
        // mPoints_txt = findViewById(R.id.points_editText);
 
-
         //Button to capture Goals scored
         mGoalsSuccess = findViewById(R.id.goalsS);
         mGoalsSuccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goalsS = goalsS + 1;
-                Toast.makeText(Secondactivity.this, "Successful Goal Logged", Toast.LENGTH_SHORT).show();
+                goalsS++;
+                Toast.makeText(Secondactivity.this, "Successful Goal Logged " + goalsS, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -82,8 +81,8 @@ public class Secondactivity extends AppCompatActivity {
         mGoalsFail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goalsF = goalsF + 1;
-                Toast.makeText(Secondactivity.this, "Unsuccessful Goal Logged", Toast.LENGTH_SHORT).show();
+                goalsF++;
+                Toast.makeText(Secondactivity.this, "Unsuccessful Goal Logged " + goalsF, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -92,8 +91,8 @@ public class Secondactivity extends AppCompatActivity {
         mPointsSuccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pointsS = pointsS + 1;
-                Toast.makeText(Secondactivity.this, "Successful Point Logged", Toast.LENGTH_SHORT).show();
+                pointsS++;
+                Toast.makeText(Secondactivity.this, "Successful Point Logged " + pointsS, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -102,8 +101,8 @@ public class Secondactivity extends AppCompatActivity {
         mPointsFail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pointsF = pointsF + 1;
-                Toast.makeText(Secondactivity.this, "Unsuccessful Point Logged", Toast.LENGTH_SHORT).show();
+                pointsF++;
+                Toast.makeText(Secondactivity.this, "Unsuccessful Point Logged " + pointsF, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -112,8 +111,8 @@ public class Secondactivity extends AppCompatActivity {
         mHandpassSuccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handpassS = handpassS + 1;
-                Toast.makeText(Secondactivity.this, "Successful Handpass Logged", Toast.LENGTH_SHORT).show();
+                handpassS++;
+                Toast.makeText(Secondactivity.this, "Successful Handpass Logged " + handpassS, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -122,8 +121,8 @@ public class Secondactivity extends AppCompatActivity {
         mHandPassFail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handpassF = handpassF + 1;
-                Toast.makeText(Secondactivity.this, "Unsuccessful Handpass Logged", Toast.LENGTH_SHORT).show();
+                handpassF++;
+                Toast.makeText(Secondactivity.this, "Unsuccessful Handpass Logged " + handpassF, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -132,8 +131,8 @@ public class Secondactivity extends AppCompatActivity {
         mKickpassSuccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                kickpassS = kickpassS + 1;
-                Toast.makeText(Secondactivity.this, "Successful Kickpass Logged", Toast.LENGTH_SHORT).show();
+                kickpassS++;
+                Toast.makeText(Secondactivity.this, "Successful Kickpass Logged " + kickpassS, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -142,8 +141,8 @@ public class Secondactivity extends AppCompatActivity {
         mKickPassFail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                kickpassF = kickpassF + 1;
-                Toast.makeText(Secondactivity.this, "Unsuccessful Kickpass Logged", Toast.LENGTH_SHORT).show();
+                kickpassF++;
+                Toast.makeText(Secondactivity.this, "Unsuccessful Kickpass Logged " + kickpassF, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -166,24 +165,40 @@ public class Secondactivity extends AppCompatActivity {
                 Report report = new Report();
                 report.setName(mName_editTxt.getText().toString());
                 report.setPosition(mPosition_editTxt.getText().toString());
-                report.setScore(mScore_editTxt.getText().toString());
-                report.setSteps(mReadBuffer.getText().toString());
                 report.setGoalsfor(goalsS);
                 report.setGoalsmiss(goalsF);
-                report.setGoals_percentage(df2.format(goalsPC));// convert float to decimal format and send to report
+                report.setGoals_percentage(df2.format(goalsPC));//convertfloattodecimalformatandsendtoreport
                 report.setPointsfor(pointsS);
                 report.setPointsmiss(pointsF);
-                report.setPoints_percentage(df2.format(pointsPC));// convert float to decimal format and send to report
+                report.setPoints_percentage(df2.format(pointsPC));//convertfloattodecimalformatandsendtoreport
                 report.setHandpassfor(handpassS);
                 report.setHandpassmiss(handpassF);
-                report.setHandpass_percentage(df2.format(handpassPC));// convert float to decimal format and send to report
+                report.setHandpass_percentage(df2.format(handpassPC));//convertfloattodecimalformatandsendtoreport
                 report.setKickpassfor(kickpassS);
                 report.setKickpassmiss(kickpassF);
-                report.setKickpass_percentage(df2.format(kickpassPC)); //convert float to decimal format and send to report
+                report.setKickpass_percentage(df2.format(kickpassPC));//convertfloattodecimalformatandsendtoreport
+                report.setScore(mScore_editTxt.getText().toString());
+                report.setSteps(mReadBuffer.getText().toString());
+
                 new FirebaseDatabaseHelper().addReport(report, new FirebaseDatabaseHelper.DataStatus() {
+                    @Override
+                    public void DataIsLoaded(List<Report> reports, List<String> keys) {
+
+                    }
+
                     @Override
                     public void DataIsInserted() {
                         Toast.makeText(Secondactivity.this, "The player report has been inserted successfully", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void DataIsUpdated() {
+
+                    }
+
+                    @Override
+                    public void DataIsDeleted() {
+
                     }
 
                 });
