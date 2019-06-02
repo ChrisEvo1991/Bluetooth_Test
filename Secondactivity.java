@@ -31,8 +31,9 @@ import java.text.DecimalFormat;
 public class Secondactivity extends AppCompatActivity {
 
     // GUI Components
-    private TextView mBluetoothStatus, mReadBuffer, mGoals_txt, mPoints_txt;
-    private EditText mName_editTxt, mPosition_editTxt, mScore_editTxt;
+   private TextView mBluetoothStatus, mReadBuffer, mGoals_txt, mPoints_txt;
+    private EditText mName_editTxt;
+    private Spinner mPosition_id;
     private Button mGoalsSuccess, mGoalsFail, mPointsSuccess, mPointsFail, mHandpassSuccess, mHandPassFail, mKickpassSuccess, mKickPassFail, mAdd_btn, mScanBtn, mListPairedDevicesBtn ;
     private BluetoothAdapter mBTAdapter;
     private Set<BluetoothDevice> mPairedDevices;
@@ -49,6 +50,7 @@ public class Secondactivity extends AppCompatActivity {
     private final static int REQUEST_ENABLE_BT = 1; // used to identify adding bluetooth names
     private final static int MESSAGE_READ = 2; // used in bluetooth handler to identify message update
     private final static int CONNECTING_STATUS = 3; // used in bluetooth handler to identify message status
+    private int counter, counter1, counter2, counter3, counter4, counter5, counter6, counter7; // variables for dislpaying number of events in toast messages
     private float goalsS, goalsF, goalsC, goalsPC;// variables for goals
     private float pointsS, pointsF, pointsC, pointsPC;// variables for points
     private float handpassS, handpassF, handpassC, handpassPC;// variables for handpasses
@@ -62,9 +64,9 @@ public class Secondactivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
         mName_editTxt = findViewById(R.id.name_editText);
-        mPosition_editTxt = findViewById(R.id.position_editText2);
-        mScore_editTxt = findViewById(R.id.goals_editText3);
-       // mPoints_txt = findViewById(R.id.points_editText);
+        mPosition_id = findViewById(R.id.positions_id);
+        mGoals_txt = findViewById(R.id.mGoals_txt);
+        mPoints_txt = findViewById(R.id.mPoints_txt);
 
         //Button to capture Goals scored
         mGoalsSuccess = findViewById(R.id.goalsS);
@@ -72,7 +74,8 @@ public class Secondactivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goalsS++;
-                Toast.makeText(Secondactivity.this, "Successful Goal Logged " + goalsS, Toast.LENGTH_SHORT).show();
+                goalCounter();
+                Toast.makeText(Secondactivity.this, "Successful Goal Logged " + counter, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -82,7 +85,8 @@ public class Secondactivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goalsF++;
-                Toast.makeText(Secondactivity.this, "Unsuccessful Goal Logged " + goalsF, Toast.LENGTH_SHORT).show();
+                counter2++;
+                Toast.makeText(Secondactivity.this, "Unsuccessful Goal Logged " + counter2, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -92,7 +96,8 @@ public class Secondactivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pointsS++;
-                Toast.makeText(Secondactivity.this, "Successful Point Logged " + pointsS, Toast.LENGTH_SHORT).show();
+                pointCounter();
+                Toast.makeText(Secondactivity.this, "Successful Point Logged " + counter1, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -102,7 +107,8 @@ public class Secondactivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pointsF++;
-                Toast.makeText(Secondactivity.this, "Unsuccessful Point Logged " + pointsF, Toast.LENGTH_SHORT).show();
+                counter3++;
+                Toast.makeText(Secondactivity.this, "Unsuccessful Point Logged " + counter3, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -112,7 +118,8 @@ public class Secondactivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 handpassS++;
-                Toast.makeText(Secondactivity.this, "Successful Handpass Logged " + handpassS, Toast.LENGTH_SHORT).show();
+                counter4++;
+                Toast.makeText(Secondactivity.this, "Successful Handpass Logged " + counter4, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -122,7 +129,8 @@ public class Secondactivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 handpassF++;
-                Toast.makeText(Secondactivity.this, "Unsuccessful Handpass Logged " + handpassF, Toast.LENGTH_SHORT).show();
+                counter5++;
+                Toast.makeText(Secondactivity.this, "Unsuccessful Handpass Logged " + counter5, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -132,7 +140,8 @@ public class Secondactivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 kickpassS++;
-                Toast.makeText(Secondactivity.this, "Successful Kickpass Logged " + kickpassS, Toast.LENGTH_SHORT).show();
+                counter6++;
+                Toast.makeText(Secondactivity.this, "Successful Kickpass Logged " + counter6, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -142,9 +151,11 @@ public class Secondactivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 kickpassF++;
-                Toast.makeText(Secondactivity.this, "Unsuccessful Kickpass Logged " + kickpassF, Toast.LENGTH_SHORT).show();
+                counter7++;
+                Toast.makeText(Secondactivity.this, "Unsuccessful Kickpass Logged " + counter7, Toast.LENGTH_SHORT).show();
             }
         });
+
 
         //Button to add captured player report data to DB
         mAdd_btn = findViewById(R.id.add_button);
