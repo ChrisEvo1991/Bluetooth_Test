@@ -162,15 +162,17 @@ public class Secondactivity extends AppCompatActivity {
         mAdd_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                
                 //calculating percentage of success for each match event
-                goalsC = goalsF + goalsS;
-                goalsPC =  goalsS/goalsC;
-                pointsC = pointsF + pointsS;
-                pointsPC = pointsS/pointsC;
-                handpassC = handpassF + handpassS;
-                handpassPC = handpassS/handpassC;
-                kickpassC = kickpassF + kickpassS;
-                kickpassPC = kickpassS/ kickpassC;
+                
+                goalsC = goalsF + goalsS; //Goal events combined = Failed events + Successfull events
+                goalsPC =  goalsS/goalsC; //Goal success percentage = Successfull events/Combined events
+                pointsC = pointsF + pointsS; //Point events combined = Failed events + Successfull events
+                pointsPC = pointsS/pointsC; //Point success percentage = Successfull events/Combined events
+                handpassC = handpassF + handpassS; //Handpass events combined = Failed events + Successfull events
+                handpassPC = handpassS/handpassC; //Handpass success percentage = Successfull events/Combined events
+                kickpassC = kickpassF + kickpassS; //Kickpass events combined = Failed events + Successfull events
+                kickpassPC = kickpassS/ kickpassC; //Kickpass success percentage = Successfull events/Combined events
 
                 //Send data to database
                 Report report = new Report();
